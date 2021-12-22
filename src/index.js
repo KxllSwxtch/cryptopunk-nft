@@ -1,11 +1,17 @@
+import { BrowserRouter as Router } from "react-router-dom"
 import { StrictMode } from "react"
 import { render } from "react-dom"
-import App from "./App"
+import Routes from "./Routes"
 import "./index.css"
+import Layout from "./components/Layout/Layout"
 
 render(
   <StrictMode>
-    <App />
+    <Router>
+      <Layout>
+        <Routes />
+      </Layout>
+    </Router>
   </StrictMode>,
   document.getElementById("root")
 )
