@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Header, Main, PunkList } from "./components"
+import { Main, PunkList } from ".."
 import "./App.css"
 
 function App() {
@@ -20,7 +20,6 @@ function App() {
 
   return (
     <div className='app'>
-      <Header />
       {punkListData.length > 0 && (
         <>
           <Main selectedPunk={selectedPunk} punkListData={punkListData} />
