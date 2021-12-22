@@ -1,25 +1,35 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Header, PunkList } from "./components"
+import { Header, Main, PunkList } from "./components"
 import "./App.css"
 
 function App() {
   const [punkListData, setPunkListData] = useState([])
+  const [selectedPunk, setSelectedPunk] = useState("1")
 
   useEffect(() => {
     const fetchPunkListData = async () => {
       const openseaData = await axios.get(
-        "https://testnets-api.opensea.io/assets?asset_contract_address=0x671e258eE31BF319373C239D8A12d291842A19e9&order_direction=asc"
+        "https://testnets-api.opensea.io/assets?asset_contract_address=0x39a8F457151Ad4bBa611332F043487c84c2B9AeF&order_direction=asc"
       )
       setPunkListData(openseaData.data.assets)
     }
+
     fetchPunkListData()
   }, [])
 
   return (
     <div className='app'>
       <Header />
-      <PunkList punkListData={punkListData} />
+      {punkListData.length > 0 && (
+        <>
+          <Main selectedPunk={selectedPunk} punkListData={punkListData} />
+          <PunkList
+            punkListData={punkListData}
+            setSelectedPunk={setSelectedPunk}
+          />
+        </>
+      )}
     </div>
   )
 }
